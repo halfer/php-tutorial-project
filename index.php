@@ -9,7 +9,7 @@ $dsn = 'sqlite:' . $database;
 $pdo = new PDO($dsn);
 $stmt = $pdo->query(
 	'SELECT
-		title, created_at, body
+		id, title, created_at, body
 	FROM
 		post
 	ORDER BY
@@ -42,7 +42,9 @@ if ($stmt === false)
 				<?php echo htmlspecialchars($row['body']) ?>
 			</p>
 			<p>
-				<a href="#">Read more...</a>
+				<a
+					href="view-post.php?post_id=<?php echo $row['id'] ?>"
+				>Read more...</a>
 			</p>
 		<?php endwhile ?>
 
