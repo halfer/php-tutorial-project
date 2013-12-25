@@ -4,6 +4,17 @@ $root = __DIR__;
 $database = $root . '/data/data.sqlite';
 $dsn = 'sqlite:' . $database;
 
+// Get the post ID
+if (isset($_GET['post_id']))
+{
+	$postId = $_GET['post_id'];
+}
+else
+{
+	// So we always have a post ID var defined
+	$postId = 0;
+}
+
 // Connect to the database, run a query, handle errors
 $pdo = new PDO($dsn);
 $stmt = $pdo->prepare(
@@ -19,7 +30,7 @@ if ($stmt === false)
 	throw new Exception('There was a problem preparing this query');
 }
 $result = $stmt->execute(
-	array('id' => 1, )
+	array('id' => $postId, )
 );
 if ($result === false)
 {
