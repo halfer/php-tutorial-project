@@ -1,12 +1,8 @@
 <?php
-
-// Work out the path to the database, so SQLite/PDO can connect
-$root = __DIR__;
-$database = $root . '/data/data.sqlite';
-$dsn = 'sqlite:' . $database;
+require_once 'lib/common.php';
 
 // Connect to the database, run a query, handle errors
-$pdo = new PDO($dsn);
+$pdo = getPDO();
 $stmt = $pdo->query(
 	'SELECT
 		id, title, created_at, body
