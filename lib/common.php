@@ -39,3 +39,11 @@ function getPDO()
 {
 	return new PDO(getDsn());
 }
+
+function convertSqlDate($sqlDate)
+{
+	/* @var $date DateTime */
+	$date = DateTime::createFromFormat('Y-m-d', $sqlDate);
+
+	return $date->format('d M Y');
+}
