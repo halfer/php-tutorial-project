@@ -140,6 +140,11 @@ if ($_SESSION)
 						<?php endif ?>
 					<?php endforeach ?>
 				</div>
+
+				<p>
+					<a href="index.php">View the blog</a>,
+					or <a href="install.php">install again</a>.
+				</p>
 			<?php endif ?>
 
 		<?php else: ?>
