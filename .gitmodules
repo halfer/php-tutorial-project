@@ -1,0 +1,3 @@
+[submodule "vendor/password_compat"]
+	path = vendor/password_compat
+	url = https://github.com/ircmaxell/password_compat.git
