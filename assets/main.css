@@ -10,6 +10,14 @@
 .success {
 	background-color: #88ff88;
 }
+.box ul {
+	margin: 4px;
+	padding-left: 14px;
+}
+
+.box ul li {
+	margin-bottom: 2px;
+}
 
 .install-password {
 	font-size: 1.2em;
@@ -68,4 +76,23 @@ body {
 .comment-list {
 	border-bottom: 1px dotted silver;
 	margin-bottom: 12px;
+}
+
+.comment-margin {
+	margin-bottom: 8px;
+}
+
+.comment-form input,
+.comment-form textarea {
+	margin: 4px;
+}
+
+.comment-form label {
+	font-size: 0.95em;
+	margin: 7px;
+	width: 100px;
+	width: 7em;
+	color: grey;
+	float: left;
+	text-align: right;
 }
