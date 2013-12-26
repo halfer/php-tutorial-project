@@ -111,13 +111,23 @@ function createUser(PDO $pdo, $username, $length = 10)
 		$error = 'Could not prepare the user creation';
 	}
 
-	// We're storing the password in plaintext, will fix that later
+	if (!$error)
+	{
+		// Create a hash of the password, to make a stolen user database (nearly) worthless
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+		if ($hash === false)
+		{
+			$error = 'Password hashing failed';
+		}
+	}
+
+	// Insert user details, including hashed password
 	if (!$error)
 	{
 		$result = $stmt->execute(
 			array(
 				'username' => $username,
-				'password' => $password,
+				'password' => $hash,
 				'created_at' => getSqlDateForNow(),
 			)
 		);
