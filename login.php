@@ -35,14 +35,14 @@ if ($_POST)
 		<title>
 			A blog application | Login
 		</title>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<?php require 'templates/head.php' ?>
 	</head>
 	<body>
 		<?php require 'templates/title.php' ?>
 
 		<?php // If we have a username, then the user got something wrong, so let's have an error ?>
 		<?php if ($username): ?>
-			<div style="border: 1px solid #ff6666; padding: 6px;">
+			<div class="error box">
 				The username or password is incorrect, try again
 			</div>
 		<?php endif ?>

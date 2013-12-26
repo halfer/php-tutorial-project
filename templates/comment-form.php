@@ -3,7 +3,7 @@
 
 <?php // Report any errors in a bullet-point list ?>
 <?php if ($errors): ?>
-	<div style="border: 1px solid #ff6666; padding: 6px;">
+	<div class="error box">
 		<ul>
 			<?php foreach ($errors as $error): ?>
 				<li><?php echo $error ?></li>

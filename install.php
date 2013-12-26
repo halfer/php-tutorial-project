@@ -78,7 +78,7 @@ if (isset($_SESSION['try-install']))
 
 					<?php // Report the new password ?>
 					The new '<?php echo htmlspecialchars($username) ?>' password is
-					<span style="font-size: 1.2em;"><?php echo htmlspecialchars($password) ?></span>
+					<span class="install-password"><?php echo htmlspecialchars($password) ?></span>
 					(copy it to clipboard if you wish).
 				</div>
 
