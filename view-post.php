@@ -63,5 +63,23 @@ $paraText = str_replace("\n", "</p><p>", $bodyText);
 			<?php // This is already escaped, so doesn't need further escaping ?>
 			<?php echo $paraText ?>
 		</p>
+
+		<h3><?php echo countCommentsForPost($postId) ?> comments</h3>
+
+		<?php foreach (getCommentsForPost($postId) as $comment): ?>
+			<?php // For now, we'll use a horizontal rule-off to split it up a bit ?>
+			<hr />
+			<div class="comment">
+				<div class="comment-meta">
+					Comment from
+					<?php echo htmlspecialchars($comment['name']) ?>
+					on
+					<?php echo convertSqlDate($comment['created_at']) ?>
+				</div>
+				<div class="comment-body">
+					<?php echo htmlspecialchars($comment['text']) ?>
+				</div>
+			</div>
+		<?php endforeach ?>
 	</body>
 </html>
