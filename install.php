@@ -23,6 +23,7 @@ if ($_POST)
 	$_SESSION['error'] = $error;
 	$_SESSION['username'] = $username;
 	$_SESSION['password'] = $password;
+	$_SESSION['try-install'] = true;
 
 	// ... and here we redirect from POST to GET
 	redirectAndExit('install.php');
@@ -30,7 +31,7 @@ if ($_POST)
 
 // Let's see if we've just installed
 $attempted = false;
-if ($_SESSION)
+if (isset($_SESSION['try-install']))
 {
 	$attempted = true;
 	$count = $_SESSION['count'];
@@ -43,6 +44,7 @@ if ($_SESSION)
 	unset($_SESSION['error']);
 	unset($_SESSION['username']);
 	unset($_SESSION['password']);
+	unset($_SESSION['try-install']);
 }
 
 ?>
@@ -50,20 +52,7 @@ if ($_SESSION)
 <html>
 	<head>
 		<title>Blog installer</title>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<style type="text/css">
-			.box {
-				border: 1px dotted silver;
-				border-radius: 5px;
-				padding: 4px;
-			}
-			.error {
-				background-color: #ff6666;
-			}
-			.success {
-				background-color: #88ff88;
-			}
-		</style>
+		<?php require 'templates/head.php' ?>
 	</head>
 	<body>
 		<?php if ($attempted): ?>
