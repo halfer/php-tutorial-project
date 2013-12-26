@@ -139,3 +139,41 @@ function getCommentsForPost($postId)
 
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function tryLogin(PDO $pdo, $username, $password)
+{
+	$sql = "
+		SELECT
+			password
+		FROM
+			user
+		WHERE
+			username = :username
+	";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(
+		array('username' => $username, )
+	);
+
+	// Get the hash from this row, and use the third-party hashing library to check it
+	$hash = $stmt->fetchColumn();
+	$success = password_verify($password, $hash);
+
+	return $success;
+}
+
+/**
+ * Logs the user in
+ * 
+ * For safety, we ask PHP to regenerate the cookie, so if a user logs onto a site that a cracker
+ * has prepared for him/her (e.g. on a public computer) the cracker's copy of the cookie ID will be
+ * useless.
+ * 
+ * @param string $username
+ */
+function login($username)
+{
+	session_regenerate_id();
+
+	$_SESSION['logged_in_username'] = $username;
+}
