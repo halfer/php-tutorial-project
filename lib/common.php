@@ -166,3 +166,8 @@ function login($username)
 {
 	$_SESSION['logged_in_username'] = $username;
 }
+
+function isLoggedIn()
+{
+	return isset($_SESSION['logged_in_username']);
+}
