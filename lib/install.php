@@ -72,3 +72,65 @@ function installBlog(PDO $pdo)
 
 	return array($count, $error);
 }
+
+/**
+ * Creates a new user in the database
+ * 
+ * @param PDO $pdo
+ * @param string $username
+ * @param integer $length
+ * @return array Duple of (password, error)
+ */
+function createUser(PDO $pdo, $username, $length = 10)
+{
+	// This algorithm creates a random password
+	$alphabet = range(ord('A'), ord('z'));
+	$alphabetLength = count($alphabet);
+
+	$password = '';
+	for($i = 0; $i < $length; $i++)
+	{
+		$letterCode = $alphabet[rand(0, $alphabetLength - 1)];
+		$password .= chr($letterCode);
+	}
+
+	$error = '';
+
+	// Insert the credentials into the database
+	$sql = "
+		INSERT INTO
+			user
+			(username, password, created_at)
+			VALUES (
+				:username, :password, :created_at
+			)
+	";
+	$stmt = $pdo->prepare($sql);
+	if ($stmt === false)
+	{
+		$error = 'Could not prepare the user creation';
+	}
+
+	// We're storing the password in plaintext, will fix that later
+	if (!$error)
+	{
+		$result = $stmt->execute(
+			array(
+				'username' => $username,
+				'password' => $password,
+				'created_at' => getSqlDateForNow(),
+			)
+		);
+		if ($result === false)
+		{
+			$error = 'Could not run the user creation';
+		}
+	}
+
+	if ($error)
+	{
+		$password = '';
+	}
+
+	return array($password, $error);
+}
