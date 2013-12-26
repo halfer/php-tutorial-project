@@ -139,3 +139,30 @@ function getCommentsForPost($postId)
 
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function tryLogin(PDO $pdo, $username, $password)
+{
+	$sql = "
+		SELECT
+			password
+		FROM
+			user
+		WHERE
+			username = :username
+	";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(
+		array('username' => $username, )
+	);
+
+	// Get the hash from this row, and use the third-party hashing library to check it
+	$hash = $stmt->fetchColumn();
+	$success = password_verify($password, $hash);
+
+	return $success;
+}
+
+function login($username)
+{
+	$_SESSION['logged_in_username'] = $username;
+}
