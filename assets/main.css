@@ -34,3 +34,38 @@ h1, h2, h3 {
 body {
 	font-family: sans-serif;
 }
+
+.post-synopsis {
+	padding-bottom: 8px;
+	border-bottom: 1px dotted silver;
+	margin-bottom: 20px;
+}
+
+.post-synopsis h2, .post h2 {
+	color: darkblue;
+}
+
+.post .date, .post-synopsis .meta {
+	color: white;
+	background-color: grey;
+	border-radius: 7px;
+	padding: 2px;
+	display: inline;
+	font-size: 0.95em;
+}
+
+.comment .comment-meta {
+	font-size: 0.85em;
+	color: grey;
+	border-top: 1px dotted silver;
+	padding-top: 8px;
+}
+
+.comment-body p {
+	margin: 8px 4px;
+}
+
+.comment-list {
+	border-bottom: 1px dotted silver;
+	margin-bottom: 12px;
+}

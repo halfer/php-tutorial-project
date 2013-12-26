@@ -5,9 +5,6 @@
  */
 ?>
 
-<?php // We'll use a rule-off for now, to separate page sections ?>
-<hr />
-
 <?php // Report any errors in a bullet-point list ?>
 <?php if ($errors): ?>
 	<div class="error box">
