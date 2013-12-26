@@ -48,6 +48,19 @@ function convertSqlDate($sqlDate)
 	return $date->format('d M Y, H:i');
 }
 
+/**
+ * Converts unsafe text to safe, paragraphed, HTML
+ * 
+ * @param string $text
+ * @return string
+ */
+function convertNewlinesToParagraphs($text)
+{
+	$escaped = htmlspecialchars($text);
+
+	return '<p>' . str_replace("\n", "</p><p>", $escaped) . '</p>';
+}
+
 function redirectAndExit($script)
 {
 	$host = $_SERVER['HTTP_HOST'];
