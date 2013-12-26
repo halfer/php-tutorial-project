@@ -59,6 +59,13 @@ function convertSqlDate($sqlDate)
 	return $date->format('d M Y, H:i');
 }
 
+function redirectAndExit($script)
+{
+	$host = $_SERVER['HTTP_HOST'];
+	header('Location: http://' . $host . '/' . $script);
+	exit();
+}
+
 /**
  * Returns the number of comments for the specified post
  * 
