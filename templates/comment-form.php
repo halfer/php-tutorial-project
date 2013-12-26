@@ -23,6 +23,7 @@
 			type="text"
 			id="comment-name"
 			name="comment-name"
+			value="<?php echo htmlspecialchars($commentData['name']) ?>"
 		/>
 	</p>
 	<p>
@@ -33,6 +34,7 @@
 			type="text"
 			id="comment-website"
 			name="comment-website"
+			value="<?php echo htmlspecialchars($commentData['website']) ?>"
 		/>
 	</p>
 	<p>
@@ -44,7 +46,7 @@
 			name="comment-text"
 			rows="8"
 			cols="70"
-		></textarea>
+		><?php echo htmlspecialchars($commentData['text']) ?></textarea>
 	</p>
 
 	<input type="submit" value="Submit comment" />
