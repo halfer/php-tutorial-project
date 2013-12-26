@@ -1,0 +1,36 @@
+/* Success/error message boxes */
+.box {
+	border: 1px dotted silver;
+	border-radius: 5px;
+	padding: 4px;
+}
+.error {
+	background-color: #ff6666;
+}
+.success {
+	background-color: #88ff88;
+}
+
+.install-password {
+	font-size: 1.2em;
+}
+
+.top-menu {
+	border: 1px dotted silver;
+	min-height: 18px;
+	padding: 4px;
+	margin-bottom: 4px;
+}
+
+.menu-options {
+	float: right;
+}
+
+h1, h2, h3 {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
+
+body {
+	font-family: sans-serif;
+}
