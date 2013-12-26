@@ -54,9 +54,9 @@ function htmlEscape($html)
 function convertSqlDate($sqlDate)
 {
 	/* @var $date DateTime */
-	$date = DateTime::createFromFormat('Y-m-d', $sqlDate);
+	$date = DateTime::createFromFormat('Y-m-d H:i:s', $sqlDate);
 
-	return $date->format('d M Y');
+	return $date->format('d M Y, H:i');
 }
 
 /**
