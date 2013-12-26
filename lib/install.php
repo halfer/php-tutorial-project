@@ -5,7 +5,7 @@
  * 
  * @return array(count array, error string)
  */
-function installBlog()
+function installBlog(PDO $pdo)
 {
 	// Get the PDO DSN string
 	$root = getRootPath();
@@ -14,7 +14,7 @@ function installBlog()
 	$error = '';
 
 	// A security measure, to avoid anyone resetting the database if it already exists
-	if (is_readable($database))
+	if (is_readable($database) && filesize($database) > 0)
 	{
 		$error = 'Please delete the existing database manually before installing it afresh';
 	}
@@ -46,7 +46,6 @@ function installBlog()
 	// Connect to the new database and try to run the SQL commands
 	if (!$error)
 	{
-		$pdo = getPDO();
 		$result = $pdo->exec($sql);
 		if ($result === false)
 		{
