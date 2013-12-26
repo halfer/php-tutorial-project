@@ -149,6 +149,16 @@ function login($username)
 	$_SESSION['logged_in_username'] = $username;
 }
 
+function logout()
+{
+	unset($_SESSION['logged_in_username']);
+}
+
+function getAuthUser()
+{
+	return isLoggedIn() ? $_SESSION['logged_in_username'] : null;
+}
+
 function isLoggedIn()
 {
 	return isset($_SESSION['logged_in_username']);
