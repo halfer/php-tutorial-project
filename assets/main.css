@@ -82,12 +82,12 @@ body {
 	margin-bottom: 8px;
 }
 
-.comment-form input,
-.comment-form textarea {
+.user-form input,
+.user-form textarea {
 	margin: 4px;
 }
 
-.comment-form label {
+.user-form label {
 	font-size: 0.95em;
 	margin: 6px;
 	width: 7em;
