@@ -17,6 +17,18 @@ $title = $body = '';
 // Init database and get handle
 $pdo = getPDO();
 
+$postId = null;
+if (isset($_GET['post_id']))
+{
+	$post = getPostRow($pdo, $_GET['post_id']);
+	if ($post)
+	{
+		$postId = $_GET['post_id'];
+		$title = $post['title'];
+		$body = $post['body'];
+	}
+}
+
 // Handle the post operation here
 $errors = array();
 if ($_POST)
@@ -36,32 +48,26 @@ if ($_POST)
 	if (!$errors)
 	{
 		$pdo = getPDO();
-		$userId = getAuthUserId($pdo);
-		$postId = addPost(
-			$pdo,
-			$title,
-			$body,
-			$userId
-		);
-
-		if ($postId === false)
+		// Decide if we are editing or adding
+		if ($postId)
 		{
-			$errors[] = 'Post operation failed';
+			editPost($pdo, $title, $body, $postId);
+		}
+		else
+		{
+			$userId = getAuthUserId($pdo);
+			$postId = addPost($pdo, $title, $body, $userId);
+
+			if ($postId === false)
+			{
+				$errors[] = 'Post operation failed';
+			}
 		}
 	}
 
 	if (!$errors)
 	{
 		redirectAndExit('edit-post.php?post_id=' . $postId);
-	}
-}
-elseif (isset($_GET['post_id']))
-{
-	$post = getPostRow($pdo, $_GET['post_id']);
-	if ($post)
-	{
-		$title = $post['title'];
-		$body = $post['body'];
 	}
 }
 
