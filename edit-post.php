@@ -120,6 +120,7 @@ if ($_POST)
 					type="submit"
 					value="Submit comment"
 				/>
+				<a href="index.php">Cancel</a>
 			</div>
 		</form>
 	</body>
