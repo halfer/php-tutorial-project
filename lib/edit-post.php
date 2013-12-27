@@ -36,3 +36,37 @@ function addPost(PDO $pdo, $title, $body, $userId)
 
 	return $stmtSeq->fetchColumn();
 }
+
+function editPost(PDO $pdo, $title, $body, $postId)
+{
+	// Prepare the insert query
+	$sql = "
+		UPDATE
+			post
+		SET
+			title = :title,
+			body = :body
+		WHERE
+			id = :post_id
+	";
+	$stmt = $pdo->prepare($sql);
+	if ($stmt === false)
+	{
+		throw new Exception('Could not prepare post update query');
+	}
+
+	// Now run the query, with these parameters
+	$result = $stmt->execute(
+		array(
+			'title' => $title,
+			'body' => $body,
+			'post_id' => $postId,
+		)
+	);
+	if ($result === false)
+	{
+		throw new Exception('Could not run post update query');
+	}
+
+	return true;
+}
