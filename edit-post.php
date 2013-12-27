@@ -1,6 +1,7 @@
 <?php
 require_once 'lib/common.php';
 require_once 'lib/edit-post.php';
+require_once 'lib/view-post.php';
 
 session_start();
 
@@ -9,6 +10,12 @@ if (!isLoggedIn())
 {
 	redirectAndExit('index.php');
 }
+
+// Empty defaults
+$title = $body = '';
+
+// Init database and get handle
+$pdo = getPDO();
 
 // Handle the post operation here
 $errors = array();
@@ -31,7 +38,7 @@ if ($_POST)
 		$pdo = getPDO();
 		$userId = getAuthUserId($pdo);
 		$postId = addPost(
-			getPDO(),
+			$pdo,
 			$title,
 			$body,
 			$userId
@@ -46,6 +53,15 @@ if ($_POST)
 	if (!$errors)
 	{
 		redirectAndExit('edit-post.php?post_id=' . $postId);
+	}
+}
+elseif (isset($_GET['post_id']))
+{
+	$post = getPostRow($pdo, $_GET['post_id']);
+	if ($post)
+	{
+		$title = $post['title'];
+		$body = $post['body'];
 	}
 }
 
@@ -75,6 +91,7 @@ if ($_POST)
 					id="post-title"
 					name="post-title"
 					type="text"
+					value="<?php echo htmlspecialchars($title) ?>"
 				/>
 			</div>
 			<div>
@@ -84,7 +101,7 @@ if ($_POST)
 					name="post-body"
 					rows="12"
 					cols="70"
-				></textarea>
+				><?php echo htmlspecialchars($body) ?></textarea>
 			</div>
 			<div>
 				<input
