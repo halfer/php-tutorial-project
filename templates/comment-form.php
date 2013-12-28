@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var $errors string
+ * @var $commentData array
+ */
+?>
+
 <?php // Report any errors in a bullet-point list ?>
 <?php if ($errors): ?>
 	<div class="error box comment-margin">
