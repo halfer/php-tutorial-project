@@ -39,15 +39,8 @@ if ($_POST)
 			$errors = handleAddComment($pdo, $postId, $commentData);
 			break;
 		case 'delete-comment':
-			// Don't do anything if the user is not authorised
-			if (isLoggedIn())
-			{
-				$deleteResponse = $_POST['delete-comment'];
-				$keys = array_keys($deleteResponse);
-				$deleteCommentId = $keys[0];
-				deleteComment($pdo, $postId, $deleteCommentId);
-				redirectAndExit('view-post.php?post_id=' . $postId);
-			}
+			$deleteResponse = $_POST['delete-comment'];
+			handleDeleteComment($pdo, $postId, $deleteResponse);
 			break;
 	}
 }
