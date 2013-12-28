@@ -96,3 +96,16 @@ body {
 	float: left;
 	text-align: right;
 }
+
+#post-list {
+	border-collapse: collapse;
+	border: 1px solid silver;
+}
+
+#post-list td {
+	padding: 8px;
+}
+
+#post-list tbody tr:nth-child(odd) {
+	background-color: #f4f4f4;
+}
