@@ -9,6 +9,10 @@ if (!isLoggedIn())
 	redirectAndExit('index.php');
 }
 
+// Connect to the database, run a query
+$pdo = getPDO();
+$posts = getAllPosts($pdo);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,54 +28,26 @@ if (!isLoggedIn())
 		<form method="post">
 			<table id="post-list">
 				<tbody>
-					<tr>
-						<td>Title of the first post</td>
-						<td>
-							dd MM YYYY h:mi
-						</td>
-						<td>
-							<a href="edit-post.php?post_id=1">Edit</a>
-						</td>
-						<td>
-							<input
-								type="submit"
-								name="post[1]"
-								value="Delete"
-							/>
-						</td>
-					</tr>
-					<tr>
-						<td>Title of the second post</td>
-						<td>
-							dd MM YYYY h:mi
-						</td>
-						<td>
-							<a href="edit-post.php?post_id=2">Edit</a>
-						</td>
-						<td>
-							<input
-								type="submit"
-								name="post[2]"
-								value="Delete"
-							/>
-						</td>
-					</tr>
-					<tr>
-						<td>Title of the third post</td>
-						<td>
-							dd MM YYYY h:mi
-						</td>
-						<td>
-							<a href="edit-post.php?post_id=3">Edit</a>
-						</td>
-						<td>
-							<input
-								type="submit"
-								name="post[3]"
-								value="Delete"
-							/>
-						</td>
-					</tr>
+					<?php foreach ($posts as $post): ?>
+						<tr>
+							<td>
+								<?php echo htmlspecialchars($post['title']) ?>
+							</td>
+							<td>
+								<?php echo convertSqlDate($post['created_at']) ?>
+							</td>
+							<td>
+								<a href="edit-post.php?post_id=<?php echo $post['id']?>">Edit</a>
+							</td>
+							<td>
+								<input
+									type="submit"
+									name="delete-post[<?php echo $post['id']?>]"
+									value="Delete"
+								/>
+							</td>
+						</tr>
+					<?php endforeach ?>
 				</tbody>
 			</table>
 		</form>
