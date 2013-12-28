@@ -18,6 +18,7 @@ else
 // Connect to the database, run a query, handle errors
 $pdo = getPDO();
 $row = getPostRow($pdo, $postId);
+$commentCount = $row['comment_count'];
 
 // If the post does not exist, let's deal with that here
 if (!$row)
