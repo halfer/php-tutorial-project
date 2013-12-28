@@ -33,17 +33,7 @@ if ($_POST)
 		'website' => $_POST['comment-website'],
 		'text' => $_POST['comment-text'],
 	);
-	$errors = addCommentToPost(
-		$pdo,
-		$postId,
-		$commentData
-	);
-
-	// If there are no errors, redirect back to self and redisplay
-	if (!$errors)
-	{
-		redirectAndExit('view-post.php?post_id=' . $postId);
-	}
+	$errors = handleAddComment($pdo, $postId, $commentData);
 }
 else
 {
@@ -81,6 +71,7 @@ else
 
 		<?php require 'templates/list-comments.php' ?>
 
+		<?php // We use $commentData in this HTML fragment ?>
 		<?php require 'templates/comment-form.php' ?>
 	</body>
 </html>
