@@ -40,10 +40,7 @@ if ($_POST)
 			break;
 		case 'delete-comment':
 			$deleteResponse = $_POST['delete-comment'];
-			$keys = array_keys($deleteResponse);
-			$deleteCommentId = $keys[0];
-			deleteComment($pdo, $postId, $deleteCommentId);
-			redirectAndExit('view-post.php?post_id=' . $postId);
+			handleDeleteComment($pdo, $postId, $deleteResponse);
 			break;
 	}
 }
