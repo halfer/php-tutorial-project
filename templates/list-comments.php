@@ -4,7 +4,11 @@
  * @var $postId integer
  */
 ?>
-<div class="comment-list">
+<form
+	action="view-post.php?action=delete-comment&amp;post_id=<?php echo $postId?>&amp;"
+	method="post"
+	class="comment-list"
+>
 	<h3><?php echo countCommentsForPost($pdo, $postId) ?> comments</h3>
 
 	<?php foreach (getCommentsForPost($pdo, $postId) as $comment): ?>
@@ -28,4 +32,4 @@
 			</div>
 		</div>
 	<?php endforeach ?>
-</div>
+</form>
