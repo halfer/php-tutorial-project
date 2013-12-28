@@ -5,18 +5,7 @@ session_start();
 
 // Connect to the database, run a query, handle errors
 $pdo = getPDO();
-$stmt = $pdo->query(
-	'SELECT
-		id, title, created_at, body
-	FROM
-		post
-	ORDER BY
-		created_at DESC'
-);
-if ($stmt === false)
-{
-	throw new Exception('There was a problem running this query');
-}
+$posts = getAllPosts($pdo);
 
 $notFound = isset($_GET['not-found']);
 
@@ -37,7 +26,7 @@ $notFound = isset($_GET['not-found']);
 		<?php endif ?>
 
 		<div class="post-list">
-			<?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+			<?php foreach ($posts as $row): ?>
 				<div class="post-synopsis"> 
 					<h2>
 						<?php echo htmlspecialchars($row['title']) ?>
@@ -62,7 +51,7 @@ $notFound = isset($_GET['not-found']);
 						<?php endif ?>
 					</div>
 				</div>
-			<?php endwhile ?>
+			<?php endforeach ?>
 		</div>
 
 	</body>
