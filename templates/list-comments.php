@@ -14,6 +14,13 @@
 				<?php echo htmlspecialchars($comment['name']) ?>
 				on
 				<?php echo convertSqlDate($comment['created_at']) ?>
+				<?php if (isLoggedIn()): ?>
+					<input
+						type="submit"
+						name="delete-comment[<?php echo $comment['id'] ?>]"
+						value="Delete"
+					/>
+				<?php endif ?>
 			</div>
 			<div class="comment-body">
 				<?php // This is already escaped ?>
