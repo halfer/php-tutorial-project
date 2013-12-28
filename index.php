@@ -26,27 +26,27 @@ $notFound = isset($_GET['not-found']);
 		<?php endif ?>
 
 		<div class="post-list">
-			<?php foreach ($posts as $row): ?>
+			<?php foreach ($posts as $post): ?>
 				<div class="post-synopsis"> 
 					<h2>
-						<?php echo htmlspecialchars($row['title']) ?>
+						<?php echo htmlspecialchars($post['title']) ?>
 					</h2>
 					<div class="meta">
-						<?php echo convertSqlDate($row['created_at']) ?>
+						<?php echo convertSqlDate($post['created_at']) ?>
 
-						(<?php echo countCommentsForPost($pdo, $row['id']) ?> comments)
+						(<?php echo countCommentsForPost($pdo, $post['id']) ?> comments)
 					</div>
 					<p>
-						<?php echo htmlspecialchars($row['body']) ?>
+						<?php echo htmlspecialchars($post['body']) ?>
 					</p>
 					<div class="post-controls">
 						<a
-							href="view-post.php?post_id=<?php echo $row['id'] ?>"
+							href="view-post.php?post_id=<?php echo $post['id'] ?>"
 						>Read more...</a>
 						<?php if (isLoggedIn()): ?>
 							|
 							<a
-								href="edit-post.php?post_id=<?php echo $row['id'] ?>"
+								href="edit-post.php?post_id=<?php echo $post['id'] ?>"
 							>Edit</a>
 						<?php endif ?>
 					</div>
