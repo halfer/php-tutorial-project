@@ -87,7 +87,7 @@ function getCommentsForPost($postId)
 		FROM
 			comment
 		WHERE
-			post_id = :post_id		
+			post_id = :post_id
 	";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(
