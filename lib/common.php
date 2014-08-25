@@ -141,6 +141,7 @@ function tryLogin(PDO $pdo, $username, $password)
 			user
 		WHERE
 			username = :username
+			AND is_enabled = 1
 	";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(
@@ -192,6 +193,7 @@ function getAuthUserId(PDO $pdo)
 			user
 		WHERE
 			username = :username
+			AND is_enabled = 1
 	";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(
