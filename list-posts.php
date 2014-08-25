@@ -58,7 +58,9 @@ $posts = getAllPosts($pdo);
 					<?php foreach ($posts as $post): ?>
 						<tr>
 							<td>
-								<?php echo htmlEscape($post['title']) ?>
+								<a
+									href="view-post.php?post_id=<?php echo $post['id']?>"
+								><?php echo htmlEscape($post['title']) ?></a>
 							</td>
 							<td>
 								<?php echo convertSqlDate($post['created_at']) ?>
