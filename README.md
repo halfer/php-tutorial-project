@@ -2,7 +2,7 @@ Example project for "I ♥ PHP"
 ===
 
 This repository contains the blog application code featured in the "I ♥ PHP" tutorial.
-This tutorial has been designed for beginner and improving-beginner programmers wishing to learn
+The tutorial has been designed for beginner and improving-beginner programmers wishing to learn
 some good practices in PHP web development. The code example uses PDO/SQLite, and demonstrates
 parameterisation, HTML escaping, logic/content separation, authentication, form handling, sessions
 and proper password hashing. The repo is public so that experienced developers may propose
