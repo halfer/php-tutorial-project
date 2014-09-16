@@ -1,16 +1,23 @@
 Example project for "I ♥ PHP"
 ===
 
-This repo contains the code for the blog application featured in the "I ♥ PHP" project. It uses
-PDO/SQLite, and demonstrates parameterisation, HTML escaping, logic/content separation,
-authentication, form handling, sessions and proper password hashing. It is made available here
-for experienced developers who wish to propose improvements.
+This repository contains the blog application code featured in the "I ♥ PHP" tutorial.
+This tutorial has been designed for beginner and improving-beginner programmers wishing to learn
+some good practices in PHP web development. The code example uses PDO/SQLite, and demonstrates
+parameterisation, HTML escaping, logic/content separation, authentication, form handling, sessions
+and proper password hashing. The repo is public so that experienced developers may propose
+improvements if they wish.
 
 Code changes in the tutorial are shown as diffs in the text, and each modified file can be
 downloaded in its entirety at that point of development. To facilitate this, files and diffs are
 extracted from this repo by a script, rather than being copied in manually. This means that
 code improvements are much easier to transpose to the tutorial, than the traditional method of
 making adjustments by hand.
+
+Here is [a blog post about the tutorial](http://blog.jondh.me.uk/2014/08/online-php-beginners-tutorial/),
+which is presently in alpha status.
+
+See also the [text repo here](https://github.com/halfer/php-tutorial-text).
 
 Development process
 ---
