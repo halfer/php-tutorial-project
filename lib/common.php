@@ -39,3 +39,14 @@ function getPDO()
 {
 	return new PDO(getDsn());
 }
+
+/**
+ * Escapes HTML so it is safe to output
+ * 
+ * @param string $html
+ * @return string
+ */
+function htmlEscape($html)
+{
+	return htmlspecialchars($html, ENT_HTML5, 'UTF-8');
+}
