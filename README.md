@@ -66,6 +66,3 @@ branch to ensure the changes are good. If they are, I'll copy the branch into a 
 main repo. Note this usually won't be merged into an existing branch (unless the change is very
 trivial) so as to preserve earlier snapshots. I'll then push the changes to the tutorial server,
 and regenerate against the new branch.
-
-Some code changes may necessitate amendments to the text branch. That's not in a public repo
-currently, but if making that available is useful it can be arranged :-).
