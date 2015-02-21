@@ -31,7 +31,7 @@ function getDsn()
 }
 
 /**
- * Gets the PDO object for database acccess
+ * Gets the PDO object for database access
  * 
  * @return \PDO
  */
